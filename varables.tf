@@ -8,11 +8,6 @@ variable "ssh_priv_key_file" {
   type        = string
 }
 
-variable "ssh_pub_key_file" {
-  default     = "~/.ssh/id_rsa.pub"
-  type        = string  
-}
-
 variable "namecheap_username" {
   type = string
 }

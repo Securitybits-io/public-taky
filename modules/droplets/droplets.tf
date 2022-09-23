@@ -3,6 +3,7 @@ resource "digitalocean_droplet" "droplets" {
   name      = "taky-docker-public-${var.servername}"
   region    = "ams3"
   size      = "s-1vcpu-1gb"
+  ssh_keys  = [data.digitalocean_ssh_key.default.id]
 
     connection {
       host = self.ipv4_address
@@ -16,5 +17,17 @@ resource "digitalocean_droplet" "droplets" {
     inline = [
       "echo '${var.servername} :: im up'"
     ]  
+  }
+}
+
+
+resource "namecheap_domain_records" "public-airsoftsweden" {
+  domain = "airsoftsweden.com"
+  mode = "MERGE"
+
+  record {
+    hostname = "${var.servername}"
+    type = "A"
+    address = digitalocean_droplet.droplets.ipv4_address
   }
 }
