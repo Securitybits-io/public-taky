@@ -27,6 +27,3 @@ module "blue" {
   namecheap_username    = var.namecheap_username
   namecheap_api_key     = var.namecheap_api_key
 }
-
-
-
