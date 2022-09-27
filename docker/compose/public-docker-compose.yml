@@ -1,3 +1,4 @@
+version: '3'
 services:
   taky-cot:
     image: skadakar/taky:safepoint
@@ -10,15 +11,12 @@ services:
       - ssl_enabled=true
       - client_cert_required=true
       - mode=cot
-      - port=${COT_PORT}
       - bind_ip=${BIND_IP}
       - public_ip=${IP}
       - hostname=${ID}
       - redis=${REDIS}
     volumes:
       - /docker/data/taky-data:/data
-    depends_on:
-      - git-checkout
     
   taky-data:
     image: skadakar/taky:safepoint
@@ -29,7 +27,6 @@ services:
     restart: unless-stopped
     environment:
       - ssl_enabled=true
-      - client_cert_required=true
       - mode=data
       - bind_ip=${BIND_IP}
       - public_ip=${IP}
