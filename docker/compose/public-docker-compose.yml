@@ -1,0 +1,40 @@
+services:
+  taky-cot:
+    image: skadakar/taky:safepoint
+    container_name: taky-cot
+    user: root
+    ports:
+      - 8089:8089
+    restart: unless-stopped
+    environment:
+      - ssl_enabled=true
+      - client_cert_required=true
+      - mode=cot
+      - port=${COT_PORT}
+      - bind_ip=${BIND_IP}
+      - public_ip=${IP}
+      - hostname=${ID}
+      - redis=${REDIS}
+    volumes:
+      - /docker/data/taky-data:/data
+    depends_on:
+      - git-checkout
+    
+  taky-data:
+    image: skadakar/taky:safepoint
+    container_name: taky-data
+    user: root
+    ports:
+      - 8443:8443
+    restart: unless-stopped
+    environment:
+      - ssl_enabled=true
+      - client_cert_required=true
+      - mode=data
+      - bind_ip=${BIND_IP}
+      - public_ip=${IP}
+      - hostname=${ID}
+    volumes:
+      - /docker/data/taky-data:/data
+    depends_on:
+      - taky-cot

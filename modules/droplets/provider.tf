@@ -18,13 +18,10 @@ provider "digitalocean" {
   token = var.do_token
 }
 
-variable "namecheap_username" {
-  type       = string
-}
+variable "namecheap_username" {}
 
 variable "namecheap_api_key" {
-  type      = string
-  sensitive = true
+  sensitive   = true 
 }
 
 provider "namecheap" {

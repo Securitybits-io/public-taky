@@ -1,4 +1,4 @@
-module "yellow" {
+module "taky-yellow" {
   source        = "./modules/droplets"
   servername    = "yellow"
 
@@ -8,7 +8,7 @@ module "yellow" {
   namecheap_api_key     = var.namecheap_api_key
 }
 
-module "red" {
+module "taky-red" {
   source        = "./modules/droplets"
   servername    = "red"
 
@@ -18,7 +18,7 @@ module "red" {
   namecheap_api_key     = var.namecheap_api_key
 }
 
-module "blue" {
+module "taky-blue" {
   source        = "./modules/droplets"
   servername    = "blue"
 
